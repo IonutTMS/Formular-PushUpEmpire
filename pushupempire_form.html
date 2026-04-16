@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PushUPEmpire - Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            padding: 50px 40px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            font-weight: 400;
+            font-size: 13px;
+            color: #555;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .checkbox-group a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        button {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .btn-reset {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+            animation: slideDown 0.4s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .error-message {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .terms-text {
+            font-size: 12px;
+            color: #999;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            button {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">💪 PushUPEmpire</div>
+            <h1>Join Our Community</h1>
+            <p>Start your fitness journey with us today</p>
+        </div>
+
+        <div class="success-message" id="successMessage">
+            ✓ Registration successful! Welcome to PushUPEmpire!
+        </div>
+
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                <div class="error-message" id="firstNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                <div class="error-message" id="lastNameError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age *</label>
+                <input type="number" id="age" name="age" placeholder="Enter your age" min="13" max="120" required>
+                <div class="error-message" id="ageError"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="your.email@gmail.com" required>
+                <div class="error-message" id="emailError"></div>
+            </div>
+
+            <div class="form-group">
+                <label>Policies & Agreement *</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="policies" name="policies" required>
+                    <label for="policies">I agree to the <a href="#" onclick="alert('Terms & Conditions'); return false;">Terms & Conditions</a> and <a href="#" onclick="alert('Privacy Policy'); return false;">Privacy Policy</a></label>
+                </div>
+                <div class="error-message" id="policiesError"></div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-submit">Register</button>
+                <button type="reset" class="btn-reset">Clear</button>
+            </div>
+
+            <p class="terms-text">By registering, you'll get access to exclusive workouts and fitness tips!</p>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const successMessage = document.getElementById('successMessage');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.querySelectorAll('.error-message').forEach(el => el.style.display = 'none');
+            successMessage.style.display = 'none';
+
+            // Validate form
+            let isValid = true;
+
+            // First Name validation
+            const firstName = document.getElementById('firstName').value.trim();
+            if (firstName.length < 2) {
+                document.getElementById('firstNameError').textContent = 'First name must be at least 2 characters';
+                document.getElementById('firstNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Last Name validation
+            const lastName = document.getElementById('lastName').value.trim();
+            if (lastName.length < 2) {
+                document.getElementById('lastNameError').textContent = 'Last name must be at least 2 characters';
+                document.getElementById('lastNameError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Age validation
+            const age = document.getElementById('age').value;
+            if (age < 13 || age > 120) {
+                document.getElementById('ageError').textContent = 'Age must be between 13 and 120';
+                document.getElementById('ageError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Email validation
+            const email = document.getElementById('email').value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+
+            // Policies validation
+            const policies = document.getElementById('policies').checked;
+            if (!policies) {
+                document.getElementById('policiesError').textContent = 'You must agree to the policies';
+                document.getElementById('policiesError').style.display = 'block';
+                isValid = false;
+            }
+
+            // If valid, show success message
+            if (isValid) {
+                successMessage.style.display = 'block';
+                console.log('Form Data:', {
+                    firstName: firstName,
+                    lastName: lastName,
+                    age: age,
+                    email: email,
+                    policiesAccepted: policies
+                });
+
+                // Optional: Reset form after success
+                setTimeout(() => {
+                    form.reset();
+                    successMessage.style.display = 'none';
+                }, 3000);
+            }
+        });
+
+        // Real-time validation
+        document.getElementById('firstName').addEventListener('blur', function() {
+            if (this.value.trim().length < 2) {
+                document.getElementById('firstNameError').textContent = 'First name must be at least 2 characters';
+                document.getElementById('firstNameError').style.display = 'block';
+            } else {
+                document.getElementById('firstNameError').style.display = 'none';
+            }
+        });
+
+        document.getElementById('lastName').addEventListener('blur', function() {
+            if (this.value.trim().length < 2) {
+                document.getElementById('lastNameError').textContent = 'Last name must be at least 2 characters';
+                document.getElementById('lastNameError').style.display = 'block';
+            } else {
+                document.getElementById('lastNameError').style.display = 'none';
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.value.trim())) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address';
+                document.getElementById('emailError').style.display = 'block';
+            } else {
+                document.getElementById('emailError').style.display = 'none';
+            }
+        });
+
+        document.getElementById('age').addEventListener('blur', function() {
+            if (this.value < 13 || this.value > 120) {
+                document.getElementById('ageError').textContent = 'Age must be between 13 and 120';
+                document.getElementById('ageError').style.display = 'block';
+            } else {
+                document.getElementById('ageError').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
